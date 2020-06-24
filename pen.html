@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drawing</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+        span{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <canvas height="600" width="1100"></canvas>
+    <span onclick="pen()">🖊</span>
+    <span onclick="er()">橡皮</span>
+    <span onclick="bolder()">加粗</span>
+    <span onclick="col()">红色</span>
+    <span></span>
+    <script>
+        var c = document.getElementsByTagName('canvas')[0];
+        var ctx = c.getContext('2d');
+        var gj = '',
+            size = 10,
+            color = 'black';
+        var pen = function(){
+            gj = 'pen';
+        }
+        var er = function(){
+            gj = 'er';
+        }
+        var bolder = function(){
+            size += 10;
+        }
+        var col = function(){
+            color = 'red'
+        }
+        c.onmousedown = function(ev){
+            switch (gj) {
+                case 'pen':
+                    ctx.beginPath();
+                    ctx.strokeStyle = color;
+                    ctx.lineCap = 'round'
+                    ctx.lineWidth = size;
+                    ctx.moveTo(ev.clientX,ev.clientY);
+                    c.onmousemove = function(ev){
+                        ctx.lineTo(ev.clientX,ev.clientY);
+                        ctx.stroke();
+                    }
+                    break;
+                case 'er':
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'white';
+                    ctx.lineWidth = size;
+                    ctx.moveTo(ev.clientX,ev.clientY);
+                    c.onmousemove = function(ev){
+                        ctx.lineTo(ev.clientX,ev.clientY);
+                        ctx.stroke();
+                    }
+                    break;
+            }
+
+        }
+        c.onmouseup = c.onmouseleave = function(){
+            c.onmousemove = null;
+        }
+    </script>
+</body>
+</html>

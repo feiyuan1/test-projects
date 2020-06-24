@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        canvas{
+            /*height: 400px;*/
+            /*width:400px;*/
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas width=500 height=500></canvas>
+    <video>
+        <source src="src/qq.mp4" type="video/mp4">
+    </video>
+    <script>
+<!--        html和js中设置canvas的width和height，就是画布的大小，但是在css里设置canvas的width和height是画布被拉伸之后的大小
+        var canvas = document.getElementsByTagName('canvas')[0];
+        // canvas.height = 200;
+        // canvas.width = 200;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = "#aaa";
+        //四个参数  起始位置的横纵坐标  宽 高
+        ctx.fillRect(20,20,20,50)
+        //起始一条路径  重置当前路径
+        ctx.beginPath();
+        ctx.strokeStyle = 'blue';
+        //调整起始位置
+        ctx.moveTo(50,0);
+        //设置终点
+        ctx.lineTo(100,30);
+        ctx.lineTo(200,30);
+        ctx.closePath();
+        //开始绘制
+        ctx.stroke();
+        //（看起来像）添加剪切蒙版  作用于后面所有的路径
+        // ctx.clip();
+
+        ctx.beginPath();
+        // ctx.strokeStyle = 'green';
+        ctx.moveTo(10,0);
+        ctx.lineTo(200,30);
+        ctx.lineTo(300,20);
+        //从当前点回到起始点
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.strokeRect(0,0,20,20);
+        ctx.fill();
+        ctx.fillRect(100,100,50,50)
+        ctx.clearRect(110,110,10,10);
+
+        // ctx.beginPath();
+        ctx.moveTo(20,20);
+        //一个控制点 一个结束点
+        ctx.quadraticCurveTo(20,100,200,20);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(100,75,50,0.3*Math.PI,Math.PI);
+        ctx.stroke()
+        // ctx.beginPath();
+        // ctx.moveTo(0,0)
+        // ctx.arcTo(20,20,140,100,30)
+        // ctx.stroke();
+        //两个控制点 一个结束点
+        ctx.bezierCurveTo(20,100,200,100,200,20);
+        ctx.stroke();
+
+        ctx.font = "40px Arial";
+        ctx.fillText("this is s pa",50,40)
+
+        var video = document.getElementsByTagName('video')[0];
+        ctx.drawImage(video,20,20)
+
+//-->
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+.class1 {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+}
+p {
+  color: #aaa;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border: red solid black;
+}
+div {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border: '2px' solid black;
+}
+.div1 {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border: 1px solid red;
+}
+.div2 {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  width: 10px;
+}
+.div2 p {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  margin: 10px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mouse</title>
+    <style>
+        div{
+            height: 100px;
+            width:100px;
+            border: 1px solid black;
+            overflow: scroll;
+        }
+        p{
+            border:1px solid black;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div onmouseout="fun1()" onmousewheel="fun2()" onscroll="fun3()">
+        <p>balabalaba</p>
+    </div>
+    <script>
+<!--    mouseleave\mouseenter 不包含子元素    mouseout\mouseover 包含子元素-->
+        //mousewheel 监听滚轮   scroll  监听滚动条
+        var fun1 = function(){
+            console.log(111)
+        }
+        var fun2 = function(){
+            console.log('scrolling...')
+        }
+        var fun3 = function(){
+            console.log('scrolled')
+        }
+    </script>
+</body>
+</html>

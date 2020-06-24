@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data-*</title>
+</head>
+<body>
+    <h1 data-target="name" onclick="control()">控制</h1>
+    <div class="name">被控制</div>
+
+    <script>
+// <!--        用户代理会忽略-->
+        //存储页面、应用程序的私有自定义属性
+        var h1 = document.getElementsByTagName('h1')[0];
+        var tarClass = h1.getAttribute('data-target');
+        var div = document.getElementsByClassName(tarClass)[0];
+        var control = function(){
+            console.log(div)
+            div.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

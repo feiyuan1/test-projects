@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+</head>
+<body>
+    <h1 draggable="true" ondrop="fun1()" ondragend="fun2()" ondragover="fun3(event)">drag</h1>
+
+    <script>
+<!--        dragenter\dragleave\dragover 针对有效区域   dragstart\dragend\drag  针对拖放操作 drop监听有效区域内拖放-->
+        //内联绑定事件 获取时间对象
+        var fun1 = function(){
+            console.log('droping...')
+        }
+        var fun2 = function(){
+            console.log('drag end')
+        }
+        var fun3 = function(ev){
+            ev.preventDefault()
+            console.log('drag over')
+        }
+    </script>
+</body>
+</html>

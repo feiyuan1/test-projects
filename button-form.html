@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>button-form</title>
+</head>
+<body>
+    <form id="formname">
+        input<input type="text"  value="按钮所属表单id 可以有多个值  以空格分开">
+    </form>
+    <button type="button" form="formname" name='button' value="1234">button</button>
+    <script>
+        var button = document.getElementsByName('button');
+    </script>
+</body>
+</html>

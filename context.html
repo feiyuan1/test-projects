@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>context+selected + keyEv + dblclick</title>
+</head>
+<body>
+    <p oncontextmenu="fun1()" onkeydown="fun3()" ondblclick="fun4()">11111</p>
+    <input onselect="fun2()" value="balaba" onkeydown="fun3()">
+    <script>
+        var fun1 = function(){
+            console.log('context..')
+        }
+        var fun2 = function(){
+            console.log('selecting...')
+        }
+        var fun3 = function(){
+            console.log('pressing keys..z')
+        }
+        var fun4 = function(){
+            console.log('double click')
+        }
+    </script>
+</body>
+</html>

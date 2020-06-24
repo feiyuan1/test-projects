@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>audio</title>
+    <style>
+        span{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <audio src="src/qq.mp4" controls="controls" autoplay></audio>
+    <span onclick="control()">control</span>
+    <script>
+        var audio = document.getElementsByTagName('audio')[0];
+        // window.onload = function(){
+        //     audio.play()
+        // }
+        var bool = false;
+        var control = function(){
+            console.log(audio.paused)
+            bool? audio.play(): audio.pause() ;
+            bool = !bool;
+        }
+    </script>
+</body>
+</html>

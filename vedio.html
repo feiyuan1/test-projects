@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+</head>
+<body>
+    <video controls="controls"  muted="muted">
+        <source src="src/qq.mp4" type="video/mp4">
+    </video>
+    <button onclick="pause()">pause</button>
+    <button onclick="start()">start</button>
+    <button onclick="refresh()">refresh</button>
+    <a href="#">ddd</a>
+    <script>
+        var elem = document.getElementsByTagName('video')[0];
+        var pause = function(){
+            elem.pause()
+        }
+        var start = function(){
+            elem.play()
+        }
+        var refresh = function(){
+            elem.load()
+        }
+        console.log(elem.canPlayType('video/mp4'))
+        window.onload = function(){
+            console.log(elem.currentSrc)
+            elem.autoplay = true;
+            console.log(elem.currentTime)
+            console.log(elem.volume)
+        }
+    </script>
+</body>
+</html>
