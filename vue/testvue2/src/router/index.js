@@ -4,8 +4,27 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
   const routes = [
-
-]
+    {
+      path: '',
+      redirect: '/Home'
+    },
+    {
+      path: '/Home',
+      component: () => import('@view/Home/index')
+    },
+    {
+      path: '/Category',
+      component: () => import('@view/Category/index')
+    },
+    {
+      path: '/Cart',
+      component: () => import('@view/Cart/index')
+    },
+    {
+      path: '/Profile',
+      component: () => import('@view/Profile/index')
+    },
+  ]
 
 const router = new VueRouter({
   mode: 'history',

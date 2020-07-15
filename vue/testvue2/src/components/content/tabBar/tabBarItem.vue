@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-bar-item">
+    <div class="tab-bar-item" @click="href" :class="{isActive:isActive != -1}" :style="activeClass">
       <Icon :type="type" />
       <div>{{content}}</div>
     </div>
@@ -10,7 +10,22 @@
     name: "tabBarItem",
     props: {
       type: String || "ios-menu-outline",
-      content: String || '内容'
+      content: String || '内容',
+      path: String,
+      activeColor: String || 'crimson'
+    },
+    methods: {
+      href(){
+        this.$router.replace(this.path)
+      }
+    },
+    computed: {
+      isActive(){
+        return this.$route.path.indexOf(this.path)
+      },
+      activeClass(){
+        return {color: this.isActive != -1 ? this.activeColor : '#000',}
+      }
     }
   }
 </script>
