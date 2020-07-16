@@ -1,20 +1,21 @@
 import axios from 'axios'
 
-axios.default = {
-  baseUrl: '',
-  timeout: 4000,
-}
 export function request(config) {
-  const instance = axios.create(config)
+  // 1.创建实例
+  const instance = axios.create({
+    baseUrl: '',
+    timeout: 4000,
+  })
   instance.interceptors.request.use( config => {
     return config
-  }).err( err => {
+  },err => {
     console.log(err)
   })
   instance.interceptors.response.use( config => {
+    console.log(config)
     return config
-  }).err( err => {
-    return err
+  },err => {
+    console.log(err)
   })
-  return instance
+  return instance(config)
 }

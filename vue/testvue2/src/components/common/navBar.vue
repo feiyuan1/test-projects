@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar" :style="bgStyle">
     <div class="left">
       <slot name="left"/>
     </div>
@@ -14,12 +14,24 @@
 
 <script>
   export default {
-    name: "navBar"
+    name: "navBar",
+    props: {
+      bgColor: String || '#fff'
+    },
+    computed: {
+      bgStyle(){
+        return this.bgColor ? {background: this.bgColor,color: '#fff'} : {}
+      }
+    }
   }
 </script>
 
 <style scoped>
   .nav-bar{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
     display: flex;
     text-align: center;
     line-height: 44px;
