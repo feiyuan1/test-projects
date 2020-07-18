@@ -16,8 +16,8 @@
   	<!--<axios-general></axios-general>-->
   	<!--<axios-many></axios-many>-->
   	<!--<axios-global></axios-global>-->
-  	<!--<axios-instance></axios-instance>-->
-  	<interceptor></interceptor>
+  	<axios-instance></axios-instance>
+  	<!--<interceptor></interceptor>-->
     <keep-alive >
     	<transition :name="transitionName">
 	    	<router-view />    	  		
@@ -31,7 +31,7 @@
 	import axiosMany from '@/axios/axiosMany'
 	import axiosGlobal from '@/axios/axiosGlobal'
 	import axiosInstance from '@/axios/axiosInstance'
-	import interceptor from '@/axios/interceptor'
+//	import interceptor from '@/axios/interceptor'
 	export default {
 		name: 'APP',
 		components: {
@@ -39,7 +39,7 @@
 			axiosMany,
 			axiosGlobal,
 			axiosInstance,
-			interceptor,
+//			interceptor,
 		},
 		data(){
 			return{

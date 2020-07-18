@@ -24,6 +24,12 @@
 		<h1>test5-----异步操作</h1>
 		<p>{{$store.state}}</p>
 		<button @click="fun5">add</button>
+		<h1>test5-----modules+getters  funMod1</h1>
+		<p>{{$store.getters.jia}}</p>
+		<button @click="fun5">add</button>
+		<h1>test5-----modules+mutations</h1>
+		<p>{{$store.getters.jia}}</p>
+		<button @click="fun6">add</button>
 	</div>	
 </template>
 
@@ -54,6 +60,9 @@
 				this.$store.dispatch('asyfun','asyfun').then(() => {
 					console.log('操作完成')
 				})
+			},
+			fun6(){
+				this.$store.commit('funMod1')
 			}
 		}
 	}

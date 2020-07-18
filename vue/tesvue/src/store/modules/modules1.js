@@ -4,7 +4,8 @@ export default {
 	},
 	getters: {
 		jia(state){
-			state.age ++
+			
+			return ++ state.age
 		}
 	},
 	mutations: {
