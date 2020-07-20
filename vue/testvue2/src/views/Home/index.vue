@@ -3,36 +3,56 @@
     <nav-bar bgColor="firebrick">
       <div slot="center">首页</div>
     </nav-bar>
-    <better-scroll>
+    <better-scroll
+            ref="scroll"
+            @scroll="scroll"
+            @pullingUp="pullingUp"
+            :pull-upload="true"
+            :probe-type="3"
+    >
       <!--    banner 轮播图-->
-      <banner/>
+      <banner ref="banner"/>
       <!--    每日推荐-->
-      <recommend :recommend="result"/>
+      <recommend :recommend="result" ref="recommend"/>
       <!--    特色-->
-      <feature />
+      <feature ref="feature"/>
       <!--    首页分类-->
-      <tab-control :titles="['流行','新品','精选']" class="tab-control" @tabClick="tabClick"/>
+      <tab-control :titles="['流行','新品','精选']" @tabClick="tabClick" ref="tabControl"/>
       <!--列表展示-->
       <goods-list :goods="goods"/>
+<!--      backup 回滚到顶部-->
     </better-scroll>
+    <back-up @click.native="backup" v-show="isShow" />
   </div>
 </template>
 
 <script>
   import NavBar from "@com/navBar";
   import Banner from "@com/banner/Banner";
+  import BetterScroll from "@com/BetterScroll";
+  import BackUp from "@com/BackUp";
+
   import tabControl from "@con/tabControl/tabControl";
   import GoodsList from "@con/goodsList/GoodsList";
-  import BetterScroll from "@com/BetterScroll";
 
   import Recommend from "./Recommend";
   import Feature from "./Feature";
 
   import {getHomeData,getGoodsData} from "@net/home";
+  import {fun} from "../../../../../es6 export/daochu3";
 
   export default {
     name: "index",
-    components: {NavBar,Banner，Recommend,Feature,tabControl,GoodsList,BetterScroll},
+    components: {
+      NavBar,
+      Banner,
+      BetterScroll,
+      BackUp,
+      tabControl,
+      GoodsList,
+      Recommend,
+      Feature
+    },
     data(){
       return {
         result: [],
@@ -42,6 +62,8 @@
           pop: {page: 0, list: []},//liuxing
         },
         curTab: 'pop',
+        isShow: false,
+        fixed: true,
       }
     },
     methods: {
@@ -71,11 +93,44 @@
           console.log(err);
         })
       },
+      backup(){
+        this.$refs.scroll.scrollTo(0,0)
+      },
+      scroll(pos){
+        this.isShow = pos.y < -700;
+        // this.$refs.tabControl.$el.offsetTop = pos.y < -this.height ? '44px' : 'auto';
+        // if(pos.y < -this.height){
+        //   console.log('1000')
+        // }
+      },
+      pullingUp(){
+        this.getGoodsData(this.curTab);
+      },
+      debounce(func,delay){
+        let timer = null;
+        return function(...args) {
+          if(timer){
+            clearTimeout(timer)
+          }
+          timer = setTimeout(() => {
+            func.apply(args)
+          },delay)
+        }
+      },
     },
     computed: {
       goods(){
         return this.listData[this.curTab].list;
-      }
+      },
+      height(){
+        let count = 44;
+        for(let key in this.$refs){
+          if(key == 'banner' || key == 'recommend' || key == 'feature'){
+            count += parseFloat(this.$refs[key].$el.offsetHeight)
+          }
+        }
+        return count;
+      },
     },
     created(){
       //请求 banner recommend 数据
@@ -84,14 +139,16 @@
       this.getGoodsData('pop');
       this.getGoodsData('new');
       this.getGoodsData('fea');
-    }
+    },
+    mounted() {
+      let refresh = this.debounce(this.$refs.scroll.refresh,500)
+      this.$bus.$on('loading',() => {
+        refresh()
+      });
+    },
   }
 </script>
 
 <style scoped>
-  .tab-control{
-    /*一旦达到设置的位置  就固定  移动端一般支持  IE不定*/
-    position: sticky;
-    top: 44px;
-  }
+
 </style>

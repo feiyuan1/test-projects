@@ -6,7 +6,7 @@
 
 <script>
 	import BannerImgItem from '@com/banner/BannerImgItem'
-	
+
 	export default {
 		name: 'BannerImg',
 		props: {
@@ -25,7 +25,7 @@
 		},
 		methods: {
 			//定时器  鼠标移到图片 定时器消失  手动翻页：移动1/3就可以  translate
-			
+
 			tranLeft(){
 				this.timer = setInterval(() => {
 					this.slide = (this.slide - 1) % this.length;
@@ -57,7 +57,7 @@
 			},
 		},
 		created(){
-			this.tranLeft();
+			// this.tranLeft();
 		},
 //		watch: {
 //			slide(num){
@@ -70,7 +70,7 @@
 			length(){
 				return this.srcs.length;
 			},
-			
+
 		},
 	}
 </script>

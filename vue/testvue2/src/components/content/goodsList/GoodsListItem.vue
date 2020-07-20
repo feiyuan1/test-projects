@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <img :src="goodsItem.img" />
+    <img :src="goodsItem.img" @load="loading"/>
     <p>{{goodsItem.title}}</p>
   </div>
 </template>
@@ -10,6 +10,11 @@
     name: "GoodsListItem",
     props: {
       goodsItem: Object || {},
+    },
+    methods: {
+      loading(){
+        this.$bus.$emit('loading')
+      }
     }
   }
 </script>

@@ -11,21 +11,39 @@
 
   export default {
     name: "BetterScroll",
+    props: {
+      probeType: Number || 0,
+      pullUpload: Boolean || false,
+    },
+    data(){
+      return {
+        scroll: null
+      }
+    },
+    methods: {
+      scrollTo(x,y,time=500){
+        this.scroll.scrollTo(x,y,time)
+      },
+      refresh(){
+        this.scroll.refresh()
+      }
+    },
     mounted() {
-      let scroll = new BScroll(this.$refs.BScroll,{
+      this.scroll = new BScroll(this.$refs.BScroll,{
         //监听滚动类型
         //1||0:不监听  2：只监听手动滑动 不监听惯性  3：全部监听
-        probeType: 3,
+        probeType: this.probeType,
       //  上拉加载
-        pullUpLoad: true,
+        pullUpLoad: this.pullUpload,
         click:true,
       })
-      scroll.on('scroll',(pos) => {
-        // console.log(pos)
+      this.scroll.on('scroll',(pos) => {
+        this.$emit('scroll',pos)
       })
-      scroll.on('pullingUp',() => {
+      this.scroll.on('pullingUp',() => {
         console.log('shanglajiazaigou')
-        scroll.finishPullUp()
+        this.$emit('pullingUp')
+        this.scroll.finishPullUp()
       })
     }
   }
@@ -36,5 +54,6 @@
     height: calc(100vh - 49px - 44px);
     overflow: hidden;
     margin-top: 45px;
+    /*position: relative;*/
   }
 </style>
