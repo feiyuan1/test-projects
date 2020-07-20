@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			new Promise((res,rej) => {
+				setTimeout(() => {
+					res(11)
+				},1000)
+			}).then((data1) => {
+				console.log(data1)
+				
+				return Promise.resolve(22)
+			}).then((data2) => {
+				console.log(data2)
+				
+				return Promise.reject('rej33')
+			}).then((data3) => {
+				console.log(data3,'balba')
+			}).catch((rej3) => {
+				console.log(rej3+'333')
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			Promise.all([
+				new Promise((res,rej) => {
+					setTimeout(() => {
+						res(11)
+					},1000)
+				}),
+				new Promise((res,rej) => {
+				setTimeout(() => {
+					rej('rej')
+				},1000)
+			})
+			]).then(datas => {
+				console.log(datas)
+			}).catch(rej => {
+				console.log(rej)
+			})
+		</script>
+	</body>
+</html>

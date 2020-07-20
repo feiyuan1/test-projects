@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//链式执行最简单
+			new Promise((res,rej) => {
+				setTimeout(() => {
+					res(11)
+				},1000)
+			}).then((data1) => {
+				console.log(data1)
+				
+				return 22
+			}).then((data2) => {
+				console.log(data2)
+				
+				return 33
+			}).then((data3) => {
+				console.log(data3)
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			new Promise((res,rej) => {
+				setTimeout(() => {
+					res(11)
+				},1000)
+			}).then((data1) => {
+				console.log(data1)
+			}).catch((rej3) => {
+				console.log(rej3+'333')
+			})
+			
+			new Promise((res,rej) => {
+				setTimeout(() => {
+					rej('rej')
+				},1000)
+			}).then((data1) => {
+				console.log(data1)
+			},(rej) => {
+				console.log(rej)
+			})
+		</script>
+	</body>
+</html>

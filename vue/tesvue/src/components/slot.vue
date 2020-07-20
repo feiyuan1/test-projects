@@ -1,5 +1,5 @@
 <template>
-  <div class="slot">
+  <div class="slot1">
     <slot :data="datas">
       <ul>
         <li v-for="item in datas">{{item}}</li>
@@ -13,7 +13,7 @@
 
 <script>
   export default {
-    name: "slot",
+    name: "slot1",
     data(){
       return{
         datas:[1,2,3,4,5]

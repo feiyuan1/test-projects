@@ -1,10 +1,11 @@
 <template>
-  <div class="home">
-    <nav-bar bgColor="firebrick" style="z-index:10;">
+  <div>
+    <nav-bar bgColor="firebrick">
       <div slot="center">首页</div>
     </nav-bar>
     <better-scroll>
       <!--    banner 轮播图-->
+      <banner/>
       <!--    每日推荐-->
       <recommend :recommend="result"/>
       <!--    特色-->
@@ -19,6 +20,7 @@
 
 <script>
   import NavBar from "@com/navBar";
+  import Banner from "@com/banner/Banner";
   import tabControl from "@con/tabControl/tabControl";
   import GoodsList from "@con/goodsList/GoodsList";
   import BetterScroll from "@com/BetterScroll";
@@ -30,7 +32,7 @@
 
   export default {
     name: "index",
-    components: {NavBar,Recommend,Feature,tabControl,GoodsList,BetterScroll},
+    components: {NavBar,Banner，Recommend,Feature,tabControl,GoodsList,BetterScroll},
     data(){
       return {
         result: [],
