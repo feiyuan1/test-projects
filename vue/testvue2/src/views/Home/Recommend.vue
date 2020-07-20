@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <div class="recommend-item" v-for="item in recommend.slice(0,4)">
+    <div class="recommend-item" v-for="item in recommend">
       <a :href="'http://' + item.img">
         <img :src="item.img"/>
       </a>
