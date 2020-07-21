@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <!--    底部导航-->
-    <main-tab-bar/>
+    <main-tab-bar v-show="$route.path == '/Home' || $route.path == '/Cart' || $route.path == '/Category' || $route.path == '/Profile'"/>
   </div>
 </template>
 

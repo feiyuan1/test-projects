@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="detail">
     <img :src="goodsItem.img" @load="loading"/>
     <p>{{goodsItem.title}}</p>
   </div>
@@ -14,7 +14,12 @@
     methods: {
       loading(){
         this.$bus.$emit('loading')
-      }
+      },
+      detail(){
+        this.$router.push('/Detail/' + this.goodsItem.title)
+        console.log(this.goodsItem.title)
+        console.log(this.$route)
+      },
     }
   }
 </script>

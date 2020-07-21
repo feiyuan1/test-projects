@@ -36,6 +36,7 @@
     text-align: center;
     line-height: 44px;
     box-shadow: 0 1px 3px rgba(200,200,200,0.5);
+    background: #fff;
   }
   .center{
     flex: 1;

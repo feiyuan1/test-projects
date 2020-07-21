@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import NavBar from "@com/navBar";
+  import NavBar from "@com/NavBar";
   import Banner from "@com/banner/Banner";
   import BetterScroll from "@com/BetterScroll";
   import BackUp from "@com/BackUp";
@@ -39,7 +39,8 @@
   import Feature from "./Feature";
 
   import {getHomeData,getGoodsData} from "@net/home";
-  import {fun} from "../../../../../es6 export/daochu3";
+
+  import {debounce} from "@as/js/util";
 
   export default {
     name: "index",
@@ -106,17 +107,7 @@
       pullingUp(){
         this.getGoodsData(this.curTab);
       },
-      debounce(func,delay){
-        let timer = null;
-        return function(...args) {
-          if(timer){
-            clearTimeout(timer)
-          }
-          timer = setTimeout(() => {
-            func.apply(args)
-          },delay)
-        }
-      },
+
     },
     computed: {
       goods(){
@@ -141,7 +132,7 @@
       this.getGoodsData('fea');
     },
     mounted() {
-      let refresh = this.debounce(this.$refs.scroll.refresh,500)
+      let refresh = debounce(this.$refs.scroll.refresh,500)
       this.$bus.$on('loading',() => {
         refresh()
       });

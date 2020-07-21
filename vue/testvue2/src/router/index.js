@@ -10,7 +10,11 @@ Vue.use(VueRouter)
     },
     {
       path: '/Home',
-      component: () => import('@view/Home/index')
+      component: () => import('@view/Home/index'),
+    },
+    {
+      path: '/Detail/:title',
+      component: () => import('@view/Detail/Detail')
     },
     {
       path: '/Category',
@@ -24,6 +28,7 @@ Vue.use(VueRouter)
       path: '/Profile',
       component: () => import('@view/Profile/index')
     },
+
   ]
 
 const router = new VueRouter({
