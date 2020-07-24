@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" ref="BScroll">
+  <div class="wrapper" ref="BScroll" :style="{height: height}">
     <div class="content">
       <slot />
     </div>
@@ -14,6 +14,10 @@
     props: {
       probeType: Number || 0,
       pullUpload: Boolean || false,
+      height: {
+        type: String,
+        default: 'calc(100vh - 49px - 44px)',
+      },
     },
     data(){
       return {
@@ -51,7 +55,6 @@
 
 <style scoped>
   .wrapper{
-    height: calc(100vh - 49px - 44px);
     overflow: hidden;
     margin-top: 45px;
     /*position: relative;*/
