@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="imgSrc"/>
+    <img :src="imgSrc" @load="load"/>
   </div>
 </template>
 
@@ -10,6 +10,11 @@
     props: {
       imgSrc: String || '',
     },
+    methods: {
+      load(){
+        this.$emit('load')
+      },
+    }
   }
 </script>
 

@@ -5,7 +5,9 @@
       <shop-info-item
               :imgSrc="item"
               v-for="(item,key) in srcs"
-              ref="item"/>
+              ref="item"
+              @load="load"
+      />
     </div>
   </div>
 </template>
@@ -23,11 +25,20 @@
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMs8L3mt08cARmbDCcZUoDitf5x9SIr_iw7w&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIVAyGnnlYn33mjumpMay6o0H_PIB4oa-Ncw&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8uFH7Qiwzwmazv8cV6uDwydk-5PEHX4vbFg&usqp=CAU'
-        ]
+        ],
+        flag: false,
       }
     },
     components: {
       ShopInfoItem
+    },
+    methods: {
+      load(){
+        if(!this.flag){
+          this.$bus.$emit('bannerLoad')
+        }
+        this.flag = true;
+      }
     }
   }
 </script>
