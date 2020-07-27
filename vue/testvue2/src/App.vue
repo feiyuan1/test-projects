@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive exclude="Detail">
+    <keep-alive exclude="Detail,CartIndex">
       <router-view/>
     </keep-alive>
     <!--    底部导航-->

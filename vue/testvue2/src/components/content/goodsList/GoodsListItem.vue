@@ -17,8 +17,6 @@
       },
       detail(){
         this.$router.push('/Detail/' + this.goodsItem.title)
-        console.log(this.goodsItem.title)
-        console.log(this.$route)
       },
     }
   }

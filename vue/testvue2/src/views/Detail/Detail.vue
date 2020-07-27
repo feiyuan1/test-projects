@@ -17,8 +17,10 @@
       <goods-list :goods="goods" ref="goods"/>
     </better-scroll>
 <!--    底部工具栏-->
-    <detail-bottom-bar />
+    <detail-bottom-bar @add="add"/>
 <!--    backTop-->
+<!--    tip-->
+    <div class="tip" v-show="tipShow">{{tip}}</div>
   </div>
 </template>
 
@@ -53,7 +55,9 @@
         top2: 0,
         top3: 0,
         top4: 0,
+        tip: '1111',
         themeType: [0,0,0,0],
+        tipShow: false,
       }
     },
     methods: {
@@ -70,6 +74,17 @@
           }
         })
       },
+      add(tip){
+        this.tip = tip;
+        this.hide()
+      },
+      hide(){
+        //tip 显示+自动隐藏
+        this.tipShow = true;
+        setTimeout(() => {
+          this.tipShow = false;
+        },500)
+      }
     },
     created() {
       //获取推荐区的goodslist数据
@@ -83,14 +98,24 @@
       //获取sellinfo top值
       this.themeType[0] = -44
       this.$bus.$on('bannerLoad',() => {
-        this.themeType[1] = -this.$refs.sellInfo.$el.offsetTop - 44;
-        this.themeType[2] = -this.$refs.shopInfo.$el.offsetTop - 44;
-        this.themeType[3] = -this.$refs.goods.$el.offsetTop - 44;
+        this.themeType[1] = this.$refs.sellInfo && -this.$refs.sellInfo.$el.offsetTop - 44;
+        this.themeType[2] = this.$refs.shopInfo && -this.$refs.shopInfo.$el.offsetTop - 44;
+        this.themeType[3] = this.$refs.goods && -this.$refs.goods.$el.offsetTop - 44;
       })
     }
   }
 </script>
 
 <style scoped>
-
+  .tip{
+    background: #000;
+    color: #fff;
+    padding: 5px 0 ;
+    text-align: center;
+    position: absolute;
+    bottom: 70px;
+    width: 50%;
+    border-radius: 5px;
+    left: 25%;
+  }
 </style>

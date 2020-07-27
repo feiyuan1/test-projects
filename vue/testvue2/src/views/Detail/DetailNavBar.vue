@@ -4,6 +4,7 @@
     <div slot="center" class="center">
       <div v-for="(item,key) in titles" class="center-item" :class="{active: key == curKey}" @click="active(key)">{{item}}</div>
     </div>
+    <Icon type="ios-cart-outline" slot="right" class="right" @click="backCart"/>
   </nav-bar>
 </template>
 
@@ -32,12 +33,15 @@
       changeKey(key){
         this.curKey = key;
       },
+      backCart(){
+        this.$router.push('/Cart')
+      },
     },
   }
 </script>
 
 <style scoped>
-  .left{
+  .left,.right{
     font-size: 20px;
   }
   .center{
