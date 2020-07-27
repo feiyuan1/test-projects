@@ -30,7 +30,6 @@
   import NavBar from "@com/NavBar";
   import Banner from "@com/banner/Banner";
   import BetterScroll from "@com/BetterScroll";
-  import BackUp from "@com/BackUp";
 
   import tabControl from "@con/tabControl/tabControl";
   import GoodsList from "@con/goodsList/GoodsList";
@@ -40,7 +39,8 @@
 
   import {getHomeData,getGoodsData} from "@net/home";
 
-  import {debounce} from "@as/js/util";
+  import {debounce} from "@/common/util";
+  import {backTopMixIn} from "@/common/mixin";
 
   export default {
     name: "index",
@@ -48,7 +48,6 @@
       NavBar,
       Banner,
       BetterScroll,
-      BackUp,
       tabControl,
       GoodsList,
       Recommend,
@@ -63,10 +62,10 @@
           pop: {page: 0, list: []},//liuxing
         },
         curTab: 'pop',
-        isShow: false,
         fixed: true,
       }
     },
+    mixins: [backTopMixIn],
     methods: {
       //监听事件的方法
       tabClick(key){
@@ -93,9 +92,6 @@
         }).catch(err => {
           console.log(err);
         })
-      },
-      backup(){
-        this.$refs.scroll.scrollTo(0,0)
       },
       scroll(pos){
         this.isShow = pos.y < -700;

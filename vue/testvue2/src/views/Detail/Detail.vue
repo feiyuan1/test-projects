@@ -19,7 +19,8 @@
 <!--    底部工具栏-->
     <detail-bottom-bar @add="add"/>
 <!--    backTop-->
-<!--    tip-->
+    <back-up @click.native="backup" v-show="isShow" />
+    <!--    tip-->
     <div class="tip" v-show="tipShow">{{tip}}</div>
   </div>
 </template>
@@ -27,6 +28,7 @@
 <script>
   import BetterScroll from "@com/BetterScroll";
   import Banner from "@com/banner/Banner";
+  import BackUp from "@com/BackUp";
 
   import GoodsList from "@con/goodsList/GoodsList";
 
@@ -37,11 +39,14 @@
 
   import {getHomeData,getGoodsData} from "@net/home";
 
+  import {backTopMixIn} from "@/common/mixin";
+
   export default {
     name: "Detail",
     components: {
       BetterScroll,
       Banner,
+      BackUp,
       GoodsList,
       DetailNavBar,
       ShopInfo,
@@ -60,6 +65,7 @@
         tipShow: false,
       }
     },
+    mixins: [backTopMixIn],
     methods: {
       active(key){
         this.curKey = key;
@@ -84,7 +90,14 @@
         setTimeout(() => {
           this.tipShow = false;
         },500)
-      }
+      },
+      scroll(pos){
+        this.isShow = pos.y < -700;
+        // this.$refs.tabControl.$el.offsetTop = pos.y < -this.height ? '44px' : 'auto';
+        // if(pos.y < -this.height){
+        //   console.log('1000')
+        // }
+      },
     },
     created() {
       //获取推荐区的goodslist数据

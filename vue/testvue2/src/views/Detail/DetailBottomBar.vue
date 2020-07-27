@@ -31,7 +31,7 @@
     },
     methods: {
       add(){
-        this.$store.commit('addItem',this.title);
+        this.$store.dispatch('addItem',this.title);
         this.$emit('add','加入购物车')
       },
     },
