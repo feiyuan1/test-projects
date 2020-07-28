@@ -13,6 +13,8 @@
   import CartListItem from "./CartListItem";
   import CartCount from "./CartCount";
 
+  import { mapGetters } from 'vuex';
+
   export default {
     name: "CartIndex",
     components: {

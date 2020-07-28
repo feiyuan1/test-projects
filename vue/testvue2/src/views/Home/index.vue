@@ -10,6 +10,12 @@
             :pull-upload="true"
             :probe-type="3"
     >
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe-item>1</van-swipe-item>
+        <van-swipe-item>2</van-swipe-item>
+        <van-swipe-item>3</van-swipe-item>
+        <van-swipe-item>4</van-swipe-item>
+      </van-swipe>
       <!--    banner 轮播图-->
       <banner ref="banner"/>
       <!--    每日推荐-->
@@ -137,5 +143,11 @@
 </script>
 
 <style scoped>
-
+  .my-swipe .van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    line-height: 150px;
+    text-align: center;
+    background-color: #39a9ed;
+  }
 </style>
