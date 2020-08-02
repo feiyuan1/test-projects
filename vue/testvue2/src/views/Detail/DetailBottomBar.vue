@@ -22,6 +22,8 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
+
   export default {
     name: "DetailBottomBar",
     data(){
@@ -30,9 +32,12 @@
       }
     },
     methods: {
+      //action 映射为 methods
+      ...mapActions(['addItem']),
       add(){
-        this.$store.dispatch('addItem',this.title);
-        this.$emit('add','加入购物车')
+        this.addItem(this.title).then((res) => {
+          this.$toast.show(res)
+        });
       },
     },
     created() {

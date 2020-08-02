@@ -17,11 +17,9 @@
       <goods-list :goods="goods" ref="goods"/>
     </better-scroll>
 <!--    底部工具栏-->
-    <detail-bottom-bar @add="add"/>
+    <detail-bottom-bar/>
 <!--    backTop-->
     <back-up @click.native="backup" v-show="isShow" />
-    <!--    tip-->
-    <div class="tip" v-show="tipShow">{{tip}}</div>
   </div>
 </template>
 
@@ -60,9 +58,7 @@
         top2: 0,
         top3: 0,
         top4: 0,
-        tip: '1111',
         themeType: [0,0,0,0],
-        tipShow: false,
       }
     },
     mixins: [backTopMixIn],
@@ -79,17 +75,6 @@
             this.$refs.nav.changeKey(index)
           }
         })
-      },
-      add(tip){
-        this.tip = tip;
-        this.hide()
-      },
-      hide(){
-        //tip 显示+自动隐藏
-        this.tipShow = true;
-        setTimeout(() => {
-          this.tipShow = false;
-        },500)
       },
       scroll(pos){
         this.isShow = pos.y < -700;
@@ -120,15 +105,5 @@
 </script>
 
 <style scoped>
-  .tip{
-    background: #000;
-    color: #fff;
-    padding: 5px 0 ;
-    text-align: center;
-    position: absolute;
-    bottom: 70px;
-    width: 50%;
-    border-radius: 5px;
-    left: 25%;
-  }
+
 </style>
