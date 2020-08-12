@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>activeReaction</title>
+</head>
+<body>
+  <h1>vue 响应式原理</h1>
+  <div id="app">
+    {{mes}}
+  </div>
+
+  <script>
+    const obj =  {
+      mes: 'feiyuan'
+    }
+    Object.keys(obj).forEach(key => {
+      let value = obj[key]
+      Object.defineProperty(obj,key,{
+        set(newValue) {
+          console.log('newvalue=' + newValue);
+
+
+          value = newValue
+        },
+        get() {
+
+
+          return value
+        }
+      })
+    })
+    //发布者
+    class Dep {
+      constructor(){
+        this.subs = [];
+      }
+      addSub(watcher){
+        this.subs.push(watcher)
+      }
+      notify(){
+        this.subs.forEach(item => {
+          item.update()
+        })
+      }
+    }
+
+    const dep = new Dep()
+    // dep.addSub()
+
+    //订阅者
+    class Watcher {
+      constructor(name){
+        this.name = name
+      }
+      update(){
+        console.log(this.name + 'fa sheng update');
+      }
+    }
+    const w1 = new Watcher('lisi')
+    dep.addSub(w1)
+    const w2 = new Watcher('lisi22222')
+    dep.addSub(w2)
+    const w3 = new Watcher('lisi1221111')
+    dep.addSub(w3)
+
+  </script>
+  <script src="../../vue/testvue2/node_modules/vue/dist/vue.min.js" ></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        mes: 'feiyuan'
+      },
+    })
+  </script>
+</body>
+</html>

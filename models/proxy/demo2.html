@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>proxy model demo2</title>
+</head>
+<body>
+  <h1>缓存代理</h1>
+
+  <script>
+// 本体对象
+  let add = function () {
+    let count = 0;
+    for(let i=0;i<arguments.length;i++){
+      count += arguments[i]
+    }
+    return count
+  }
+  let mul = function () {
+    let count = 1;
+    for(let i=0;i<arguments.length;i++){
+      count *= arguments[i]
+    }
+    return count
+  }
+//    代理对象
+  let proxyObj = function (fn) {
+    let catcher = {};
+    console.log(new Date().getTime())
+    return function(){
+      let args = Array.prototype.join.call(arguments,',')
+      if(args in catcher){
+        return catcher[args]
+      }
+      return catcher[args] = fn.apply(this,arguments)
+    }
+  }
+  //test------------------------------------------------
+  let add1 = proxyObj(add);
+  console.log(add1(1,2,3,4),new Date().getTime())
+  console.log(add1(1,2,3,4),new Date().getTime())
+  </script>
+</body>
+</html>

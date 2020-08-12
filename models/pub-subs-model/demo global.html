@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sub and pub model global</title>
+</head>
+<body>
+  <h1>publish and subscribes model demo global</h1>
+
+  <script>
+    var EventEmitter = (function () {
+      let list = [],
+          on,
+          emit,
+          once,
+          off;
+
+      on = function (ev,fn) {
+        let _this = this;
+        (_this.list[ev] || (_this.list[ev] = [])).push(fn)
+        return _this
+      }
+
+      emit = function(){
+        let _this = this,
+            ev = [].shift.call(arguments),
+            fns = _this.list[ev];
+
+        if(!fns || fns.length === 0) {
+          return false
+        }
+
+        fns.forEach(fn => {
+          fn.apply(_this,arguments);
+        })
+
+        return _this
+      }
+
+      off = function (ev,fn) {
+        let _this = this,
+            fns = _this.list[ev];
+        if(!fns || fns.list == 0){
+          return false
+        }
+        if(!fn){
+          fns.length = 0;
+        }else{
+          fns.forEach((item,i) => {
+            if(item === fn){
+              fns.splice(i,1);
+            }
+          })
+        }
+
+        return _this
+      }
+
+      once = function (ev, fn) {
+        let _this = this;
+        if(!fn){
+          return false
+        }
+        //  先绑定 调用后关闭订阅
+        function on(){
+          _this.on(ev,on);
+          fn.apply(_this,arguments)
+        }
+        _this.on(ev,on)
+
+        return _this
+      }
+      return {
+        list,
+        on,
+        emit,
+        once,
+        off
+      }
+    })()
+
+    //  test---------------------------------------
+    function user1(content){
+      content || (content = '');
+      console.log(content + '1111111');
+    }
+    //  add subs
+    EventEmitter.on('active',user1)
+    EventEmitter.on('active',function(content){
+      console.log(content + '22222222');
+    })
+    // publish
+    EventEmitter.emit('active','content');
+
+  </script>
+</body>
+</html>

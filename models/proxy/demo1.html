@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>proxy model demo1</title>
+</head>
+<body>
+
+  <h1>用代理模式实现图片懒加载</h1>
+
+  <script>
+// 本体对象
+    let ImgNode = function(){
+      let img = document.createElement('img')
+      document.body.appendChild(img)
+     this.setSrc = function (imgSrc) {
+       img.src = imgSrc
+     }
+    }
+//代理对象
+    let proxyImg = function () {
+      let img = new Image()
+      let imgNode = new ImgNode()
+      img.onload = function () {
+        imgNode.setSrc(this.src)
+      }
+      imgNode.setSrc("http://img.lanrentuku.com/img/allimg/1212/5-121204193Q9-50.gif")
+      this.setSrc = function(src){
+        img.src = src;
+      }
+    }
+//    test-------------------------------
+for(let i =0; i<100;i++){
+  let proxyimg = new proxyImg()
+  setTimeout(() => {
+    proxyimg.setSrc("https://img.alicdn.com/tps/i4/TB1b_neLXXXXXcoXFXXc8PZ9XXX-130-200.png")
+  },i*100)
+}
+
+//   奶茶妹
+//     let real = function(name){
+//       this.name = name
+//     }
+//   //  本体对象
+//     let mr = function(girl){
+//       this.girl = girl;
+//       this.sendGift = function (gift) {
+//         console.log('ceo send' + girl + 'a gift:' + gift)
+//       }
+//     }
+//   //  代理对象
+//     let proxyObj = function(girl){
+//       this.girl = girl;
+//       this.sendGift = function (gift) {
+//         let mr1 = new mr(this.girl)
+//         mr1.sendGift(gift)
+//       }
+//     }
+//
+//
+//   //  test----------------------
+//     let proxy1 = new proxyObj('奶茶妹')
+//     proxy1.sendGift('ring')
+  </script>
+</body>
+</html>
