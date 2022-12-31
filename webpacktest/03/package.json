@@ -4,13 +4,13 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
-    "css-loader": "^3.5.3",
-    "webpack": "^3.6.0"
+    "css-loader": "^6.7.3",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "file-loader": "^6.0.0",
     "less": "^3.11.3",
-    "less-loader": "^4.1.0",
+    "less-loader": "^11.1.0",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0"
   },
